@@ -16,7 +16,16 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from blog.views import blog
+from blog.views import add_education
+from blog.views import add_experience
+from blog.views import create_profile
+from blog.views import index
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('blog/',blog ),
+    path('blog/', blog),
+    path('add-education/', add_education),
+    path('add-experience/', add_experience),
+    path('create-profile/', create_profile),
+    path('index/', index),
 ]
