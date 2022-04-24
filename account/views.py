@@ -7,6 +7,7 @@ def add_education(request):
 
 
 def add_experience(request):
+
     return render(request,'account/add-experience.html',context={})
 
 
@@ -15,7 +16,8 @@ def create_profile(request):
 
 
 def dashboard(request):
-    return render(request,'account/dashboard.html',context={})
+    user ={"is_authenticated":False}
+    return render(request,'account/dashboard.html',context={"user":1})
 
 
 def login(request):
