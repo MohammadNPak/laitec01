@@ -1,60 +1,65 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-        <link rel="stylesheet"
-              href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-              integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
-              crossorigin="anonymous"/>
-        <link href="https://fonts.googleapis.com/css?family=Raleway"
-              rel="stylesheet"/>
-        <link rel="stylesheet" href="{% static 'css/style.min.css' %}" />
-        <title>Welcome to the DevConnector</title>
-    </head>
-    <body>
-        <nav class="navbar bg-dark">
-            <h1>
-                <a href="{% url 'dashboard' %}"> <i class="fas fa-code"></i> DevConnector {{ user }}</a>
-            </h1>
-            {% if user.is_authenticated %}
-                <ul>
-                    <li>
-                        <a href="profiles.html">Developers</a>
-                    </li>
-                    <li>
-                        <a href="posts.html">Posts</a>
-                    </li>
-                    <li>
-                        <a href="dashboard.html">
-                            <i class="fas fa-user"></i>
-                            <span class="hide-sm">Dashboard</span></a
-                        >
-                    </li>
-                    <li>
-                        <a href="login.html">
-                            <i class="fas fa-sign-out-alt"></i>
-                            <span class="hide-sm">Logout</span></a
-                        >
-                    </li>
-                </ul>
-            {% else %}
-                <ul>
-                    <li>
-                        <a href="{% url 'profiles' %}">Developers</a>
-                    </li>
-                    <li>
-                        <a href="{% url 'register' %}">Register</a>
-                    </li>
-                    <li>
-                        <a href="{% url 'login' %}">Login</a>
-                    </li>
-                </ul>
-            {% endif %}
-        </nav>
-        {% block content %}
-        {% endblock content %}
-    </body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Raleway"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{% static 'css/style.min.css' %}" />
+    <title>Welcome to the DevConnector</title>
+  </head>
+  <body>
+    <nav class="navbar bg-dark">
+      <h1>
+        <a href="{% url 'dashboard' %}">
+          <i class="fas fa-code"></i> DevConnector</a
+        >
+      </h1>
+      {% if user.is_authenticated %}
+      <ul>
+        <li>
+          <a href="{% url 'profiles' %}">Developers</a>
+        </li>
+        <li>
+          <a href="{% url 'posts' %}">Posts</a>
+        </li>
+        <li>
+          <a href="{% url 'dashboard' %}">
+            <i class="fas fa-user"></i>
+            <span class="hide-sm">Dashboard</span></a
+          >
+        </li>
+        <li>
+          <a href={% url 'login' %}>
+            <i class="fas fa-sign-out-alt"></i>
+            <span class="hide-sm">Logout</span></a
+          >
+        </li>
+      </ul>
+      {% else %}
+      <ul>
+        <li>
+          <a href="{% url 'profiles' %}">Developers</a>
+        </li>
+        <li>
+          <a href="{% url 'register' %}">Register</a>
+        </li>
+        <li>
+          <a href="{% url 'login' %}">Login</a>
+        </li>
+      </ul>
+      {% endif %}
+    </nav>
+    {% block content %} {% endblock content %}
+  </body>
 </html>
