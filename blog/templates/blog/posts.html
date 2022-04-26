@@ -15,56 +15,31 @@
             <input type="submit" value="Submit" class="btn btn-dark my-1" />
         </form>
         <div class="posts">
-            <div class="post bg-white my-1 p-1">
-                <div>
-                    <a href="profile.html">
-                        <img class="round-img"
-                             src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200"
-                             alt=""/>
-                        <h4>John Doe</h4>
-                    </a>
+            {% for post in posts %}
+                <div class="post bg-white my-1 p-1">
+                    <div>
+                        <a href="profile.html">
+                            <img class="round-img"
+                                 src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200"
+                                 alt=""/>
+                            <h4>John Doe</h4>
+                        </a>
+                    </div>
+                    <div>
+                        <h2>{{ post.title }}</h2>
+                        <p class="my-1">
+                            {{ post.body }}
+                        </p>
+                        <button class="btn">
+                            <i class="fas fa-thumbs-up"></i> <span>{{ post.count_like }}</span>
+                        </button>
+                        <button class="btn">
+                            <i class="fas fa-thumbs-down"></i>
+                        </button>
+                        <a href="post.html" class="btn btn-primary">Discussion</a>
+                    </div>
                 </div>
-                <div>
-                    <p class="my-1">
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                        Ratione dolores officia assumenda dolor maiores sint pariatur
-                        quia voluptatibus voluptate perspiciatis commodi possimus nemo
-                        aut, voluptas expedita facilis amet hic culpa.
-                    </p>
-                    <button class="btn">
-                        <i class="fas fa-thumbs-up"></i> <span>4</span>
-                    </button>
-                    <button class="btn">
-                        <i class="fas fa-thumbs-down"></i>
-                    </button>
-                    <a href="post.html" class="btn btn-primary">Discussion</a>
-                </div>
-            </div>
-            <div class="post bg-white my-1 p-1">
-                <div>
-                    <a href="profile.html">
-                        <img class="round-img"
-                             src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200"
-                             alt=""/>
-                        <h4>John Doe</h4>
-                    </a>
-                </div>
-                <div>
-                    <p class="my-1">
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                        Ratione dolores officia assumenda dolor maiores sint pariatur
-                        quia voluptatibus voluptate perspiciatis commodi possimus nemo
-                        aut, voluptas expedita facilis amet hic culpa.
-                    </p>
-                    <button class="btn">
-                        <i class="fas fa-thumbs-up"></i> <span>4</span>
-                    </button>
-                    <button class="btn">
-                        <i class="fas fa-thumbs-down"></i>
-                    </button>
-                    <a href="post.html" class="btn btn-primary">Discussion</a>
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </div>
 </section>

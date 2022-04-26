@@ -26,3 +26,7 @@ class Post(models.Model):
         UserProfile, on_delete=models.CASCADE, related_name="like", null=True, blank=True)
     dislike = models.ForeignKey(
         UserProfile, on_delete=models.CASCADE, related_name="dislike", null=True, blank=True)
+
+    def count_like(self):
+        return 1
+        # self.objects.select_related('like').annotate()

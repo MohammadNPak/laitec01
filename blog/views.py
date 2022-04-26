@@ -43,6 +43,9 @@ def post(request):
 
 
 def posts(request):
-    context = {
-        "user": user}
-    return render(request, 'blog/posts.html', context=context)
+    if request.method == "GET":
+        posts1 = Post.objects.all()
+        # print(posts)
+        return render(request, 'blog/posts.html', context={"posts": posts1})
+    elif request.method == "POST":
+        pass
