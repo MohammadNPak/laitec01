@@ -21,7 +21,6 @@ user = {
     "skills":"python, django, javascript, html, css",
     "education":['Bachelor of Science in Computer Science','University of California, Los Angeles','California, USA'],
     "experience":["2 years of experience in web development","1 year of experience in web development","1 year of experience in web development"],
-
 }
 
 
