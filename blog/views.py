@@ -1,43 +1,35 @@
-from django.http import HttpResponse
-from django.shortcuts import render
+from django.http import HttpResponse, Http404
+from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.models import User
 from .models import Post, Comment, UserProfile
 # Create your views here.
 
-user = {
-    "is_authenticated": True,
-    "first_name": "jhon",
-    "last_name": "doe",
-    "email": "jhondoe@gmail.com",
-    "phone": "+1-123-456-7890",
-    "address": "123, Main Street, New York, NY, USA",
-    "city": "new york",
-    "state": "new york",
-    "zip": "12345",
-    "country": "usa",
-    "profile_image": "img/profile-image.png",
-    "cover_image": "img/cover-image.png",
-    "bio": "im a web developer and i love to code",
-    "website": "showmeyourcode.ir",
-    "skills": "python, django, javascript, html, css",
-    "education": ['Bachelor of Science in Computer Science', 'University of California, Los Angeles', 'California, USA'],
-    "experience": ["2 years of experience in web development", "1 year of experience in web development", "1 year of experience in web development"],
-}
-
 
 def index(request):
-    context = {
-        "user": user}
-
-    return render(request, 'blog/index.html', context=context)
+    return render(request, 'blog/index.html', context={})
 
 
-def post(request):
+def post(request, pk, slug):
 
     if request.method == "GET":
-        posts = Post.objects.all()
-        print(posts)
-        return render(request, 'blog/post.html', context={"post": posts})
+        try:
+            post = (Post.objects
+                    .select_related('author')
+                    .select_related('author__user')
+                    .prefetch_related ('like')
+                    .prefetch_related ('dislike')
+                    .prefetch_related ('comment_set')
+                    .prefetch_related ('comment_set__author')
+                    .prefetch_related ('comment_set__author__user')
+                    .prefetch_related ('comment_set__like')
+                    .prefetch_related ('comment_set__dislike')
+                    .get(pk=pk)
+                    )
+            post = get_object_or_404(Post, pk=pk)
+        except Post.DoesNotExist:
+            raise Http404("Post does not exist")
+
+        return render(request, 'blog/post.html', context={"post": post})
     elif request.method == "POST":
         pass
 
