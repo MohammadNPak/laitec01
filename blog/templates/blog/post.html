@@ -3,22 +3,7 @@
 {% block content %}
     <section class="container">
         <a href="posts.html" class="btn">Back To Posts</a>
-        <div class="post bg-white p-1 my-1">
-            <div>
-                <a href="profile.html">
-                    <img class="round-img"
-                         src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200"
-                         alt=""/>
-                    <h4>{{post.author.user.username}}</h4>
-                </a>
-            </div>
-            <div>
-                <h1>{{post.title}}</h1>
-                <p class="my-1">
-                    {{post.body}}
-                </p>
-            </div>
-        </div>
+        {% include 'blog/_post.html' with post=post  %}
         <div class="post-form">
             <div class="post-form-header bg-primary">
                 <h3>Leave A Comment</h3>
@@ -29,22 +14,8 @@
             </form>
         </div>
         <div class="posts comments">
-            {% for comment in post.comment_set.all %}   
-            <div class="post bg-white p-1 my-1" id="{{comment.pk}}">
-                <div>
-                    <a href="profile.html">
-                        <img class="round-img"
-                             src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200"
-                             alt=""/>
-                        <h4>{{comment.author.user.username}}</h4>
-                    </a>
-                </div>
-                <div>
-                    <p class="my-1">
-                        {{comment.body}}
-                    </p>
-                </div>
-            </div>
+            {% for comment in post.comment.all %}   
+                {% include 'blog/_comment.html' with comment=comment %}
             {% endfor %}
             
         </div>
