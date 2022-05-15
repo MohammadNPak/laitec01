@@ -8,11 +8,11 @@
     <div class="profile-top bg-primary p-2">
       <img
         class="round-img my-1"
-        src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200"
+        src="{{user_profile.picture.url}}"
         alt=""
       />
 
-      <h1 class="large">John Doe</h1>
+      <h1 class="large">{{user_profile.user.get_full_name}}</h1>
       <p class="lead">Developer at Microsoft</p>
       <p>Seattle, WA</p>
       <div class="icons my-1">
@@ -37,9 +37,7 @@
     <div class="profile-about bg-light p-2">
       <h2 class="text-primary">John's Bio</h2>
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni,
-        distinctio tempora. Obcaecati vero ad similique numquam. Commodi
-        incidunt quia non!
+        {{ user_profile.bio }}
       </p>
       <div class="line"></div>
       <h2 class="text-primary">Skill Set</h2>

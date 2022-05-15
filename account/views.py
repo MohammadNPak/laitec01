@@ -1,29 +1,11 @@
 from multiprocessing import context
-from django.shortcuts import render
+from django.shortcuts import render,get_object_or_404
+from blog.models import UserProfile
 
 # Create your views here.
 
-user = {
-    "is_authenticated":True,
-    "first_name":"jhon",
-    "last_name":"doe",
-    "email":"jhondoe@gmail.com",
-    "phone":"+1-123-456-7890",
-    "address":"123, Main Street, New York, NY, USA",
-    "city":"new york",
-    "state":"new york",
-    "zip":"12345",
-    "country":"usa",
-    "profile_image":"img/profile-image.png",
-    "cover_image":"img/cover-image.png",
-    "bio":"im a web developer and i love to code",
-    "website":"showmeyourcode.ir",
-    "skills":"python, django, javascript, html, css",
-    "education":['Bachelor of Science in Computer Science','University of California, Los Angeles','California, USA'],
-    "experience":["2 years of experience in web development","1 year of experience in web development","1 year of experience in web development"],
-}
 
-
+user = {}
 def add_education(request):
     context = {
         "user":user
@@ -59,11 +41,13 @@ def login(request):
     return render(request,'account/login.html',context=context)
 
 
-def profile(request):
-    context = {
-        "user":user
-    }
-    return render(request,'account/profile.html',context=context)
+def profile(request,username):
+
+    user_profile = (UserProfile.objects
+                    .select_related('user')
+                    .get(user__username=username))
+
+    return render(request,'account/profile.html',context={"user_profile":user_profile})
 
 def profiles(request):
     context = {

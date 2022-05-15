@@ -10,8 +10,10 @@
         <div class="post-form-header bg-primary">
             <h3>Say Something...</h3>
         </div>
-        <form class="form my-1">
-            <textarea cols="30" rows="5" placeholder="Create a post"></textarea>
+        <form class="form my-1" method="post">
+            {% csrf_token %}
+            <textarea name="title"  cols="30" rows="1" placeholder="post title" ></textarea>
+            <textarea name="body"   cols="30" rows="5" placeholder="Post Body"  ></textarea>
             <input type="submit" value="Submit" class="btn btn-dark my-1" />
         </form>
         <div class="posts">

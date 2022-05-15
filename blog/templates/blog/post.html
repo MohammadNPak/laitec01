@@ -2,13 +2,14 @@
 {% load static %}
 {% block content %}
     <section class="container">
-        <a href="posts.html" class="btn">Back To Posts</a>
+        <a href="{% url 'posts' %}" class="btn">Back To Posts</a>
         {% include 'blog/_post.html' with post=post  %}
         <div class="post-form">
             <div class="post-form-header bg-primary">
                 <h3>Leave A Comment</h3>
             </div>
-            <form class="form my-1">
+            <form class="form my-1" method="post">
+                {% csrf_token %}
                 <textarea name="text" cols="30" rows="5" placeholder="Comment on this post"></textarea>
                 <input type="submit" class="btn btn-dark my-1" value="Submit" />
             </form>

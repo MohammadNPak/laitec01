@@ -393,6 +393,7 @@ img {
 }
 .profile-grid .profile-top img {
   width: 250px;
+  height: 250px;
 }
 .profile-grid .profile-top .icons a {
   color: #fff;
@@ -487,6 +488,7 @@ img {
 }
 .post img {
   width: 150px;
+  height: 150px;
 }
 .post .post-footer{
   display:flex;
@@ -500,6 +502,13 @@ img {
   height: 2em;
 
 }
+
+.comments{
+  /* border: 1px solid #ccc; */
+  /* padding: 0 0 1em 0; */
+  margin-left: 1em;
+}
+
 
 @media (max-width: 700px) {
   .hide-sm {

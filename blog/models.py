@@ -5,7 +5,7 @@ from django.contrib.contenttypes.fields import GenericForeignKey, GenericRelatio
 # Create your models here.
 
 # class Post()
-from django.urls import reverse
+from django.urls import reverse,reverse_lazy
 from django.template.defaultfilters import slugify
 
 
@@ -16,6 +16,10 @@ class UserProfile(models.Model):
 
     def __str__(self) -> str:
         return self.user.username
+    
+    def get_absolute_url(self):
+        return reverse_lazy("profile", kwargs={"username": self.user.username})
+    
 
 
 class Comment(models.Model):
